@@ -1,0 +1,34 @@
+// Simple icon generation script
+const fs = require('fs');
+const path = require('path');
+
+// Create a simple data URL for a planner icon
+const createIcon = (size) => {
+  const canvas = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#4F46E5"/>
+    <rect x="15" y="20" width="70" height="5" fill="#FFFFFF" rx="1"/>
+    <rect x="15" y="30" width="70" height="60" fill="#FFFFFF" rx="2"/>
+    <rect x="15" y="20" width="70" height="10" fill="#6366F1" rx="1"/>
+    <line x1="25" y1="40" x2="75" y2="40" stroke="#E5E7EB" stroke-width="1"/>
+    <line x1="25" y1="50" x2="75" y2="50" stroke="#E5E7EB" stroke-width="1"/>
+    <line x1="25" y1="60" x2="75" y2="60" stroke="#E5E7EB" stroke-width="1"/>
+    <line x1="25" y1="70" x2="75" y2="70" stroke="#E5E7EB" stroke-width="1"/>
+    <line x1="25" y1="80" x2="75" y2="80" stroke="#E5E7EB" stroke-width="1"/>
+    <circle cx="22" cy="45" r="2" fill="#4F46E5"/>
+    <circle cx="22" cy="55" r="2" fill="#4F46E5"/>
+    <circle cx="22" cy="65" r="2" fill="#4F46E5"/>
+    <circle cx="22" cy="75" r="2" fill="#4F46E5"/>
+  </svg>`;
+  
+  return canvas;
+};
+
+// Save icon files
+const publicDir = path.join(__dirname, 'public');
+
+fs.writeFileSync(path.join(publicDir, 'pwa-192x192.svg'), createIcon(192));
+fs.writeFileSync(path.join(publicDir, 'pwa-512x512.svg'), createIcon(512));
+fs.writeFileSync(path.join(publicDir, 'apple-touch-icon.svg'), createIcon(180));
+
+console.log('PWA icons generated successfully!');
+console.log('Note: For production, convert these SVG files to PNG using an online tool or image editor.');
